@@ -1,7 +1,7 @@
 {
   "name": "gamedev-resource",
   "version": "1.0.0",
-  "description": "",
+  "description": "A Electron app that access a Database to get a random Article and a Video about games to facilitate the user to get knowledge about game dev universe.",
   "main": "index.js",
   "scripts": {
     "start": "electron .",
