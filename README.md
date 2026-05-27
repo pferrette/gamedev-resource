@@ -1,2 +1,3 @@
 # gamedev-resource
-A Neutralino app running on background of your computer that, in a specific configured time and date, shows you an recommendation about some resource like an article or video. 
+
+A Electron app that access a Database to get a random Article and a Video about games to facilitate the user to get knowledge about game dev universe.
