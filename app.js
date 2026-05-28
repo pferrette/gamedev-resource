@@ -7,14 +7,21 @@ const saveButton = document.getElementById("btnSave");
 const isArticleRead = false;
 const isVideoWatched = false;
 
-vLink.href = "https://google.com";
-vLink.target = "_blank";
-vLink.text = "Wrote on App.JS - Video";
+async function loadVideos() {
+  const vResp = await window.electronAPI.getVideos();
+  vLink.href = vResp.data.Link;
+  vLink.text = vResp.data.Name;
+  vLink.target = "_blank";
+}
+loadVideos();
 
-aLink.href = "https://html.com";
-aLink.target = "_blank";
-aLink.text = "Wrote on App.js - Article";
-
+async function loadArticles() {
+  const aResp = await window.electronAPI.getArticles();
+  aLink.href = aResp.data.Link;
+  aLink.text = aResp.data.Name;
+  aLink.target = "_blank";
+}
+loadArticles();
 // document.addEventListener("DOMContentLoaded", () => {
 //   // Select all <a> tags with href starting with "http" (external links)
 //   const externalLinks = document.querySelectorAll('a[href^="http"]');
@@ -43,11 +50,11 @@ aLink.text = "Wrote on App.js - Article";
 // });
 
 document.getElementById("ckbVideo").addEventListener("change", () => {
-  if (checkVideo.checked) {
-    isVideoWatched = true;
-  } else {
-    isVideoWatched = false;
-  }
+  // if (checkVideo.checked) {
+  //   isVideoWatched = true;
+  // } else {
+  //   isVideoWatched = false;
+  // }
 });
 
 document.getElementById("ckbArticle").addEventListener("change", () => {
