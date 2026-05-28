@@ -1,20 +1,27 @@
-const Database = require("better-sqlite3");
-const db = new Database("gamedev-res.db");
+const { Pool } = require("pg");
 
-const getArticles = db.prepare("SELECT * FROM Articles");
-const getVideos = db.prepare("SELECT * FROM Videos");
+const pool = new Pool({
+  host: "localhost",
+  port: "5432",
+  user: "postgres",
+  password: "1234",
+  database: "gamedev-res",
+});
 
-const randomArticle = db.exec(
-  `SELECT * FROM Articles ORDER BY RANDOM() LIMIT 1 isRead = false;`,
-);
-const articleName = JSON.stringify(randomArticle.name);
-const articleLink = JSON.stringify(randomArticle.link);
+async function queryVideos() {
+  const res = await pool.query(
+    `SELECT * FROM "Videos" WHERE "isRead" = '0' ORDER BY RANDOM() LIMIT 1;`,
+  );
+  return res.rows[0];
+  await pool.end();
+}
 
-//--------------------------------------------------
-const randomVideo = db.exec(
-  `SELECT * FROM Videos ORDER BY RANDOM() LIMIT 1 WHERE isRead = false;`,
-);
-const videoName = JSON.stringify(randomVideo.name);
-const videoLink = JSON.stringify(randomVideo.link);
+async function queryArticles() {
+  const res = await pool.query(
+    `SELECT * FROM "Articles" WHERE "isRead" = '0' ORDER BY RANDOM() LIMIT 1;`,
+  );
+  return res.rows[0];
+  await pool.end();
+}
 
-module.exports = db;
+module.exports = { queryVideos, queryArticles };

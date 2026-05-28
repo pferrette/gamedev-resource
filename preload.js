@@ -4,8 +4,6 @@ contextBridge.exposeInMainWorld("electronAPI", {
   openFile: () => ipcRenderer.invoke("dialog:openFile"),
   // openExternal: (url) => shell.openExternal(url),
   botaoClicado: () => ipcRenderer.send("botao-clicado"),
+  getVideos: () => ipcRenderer.invoke("videos:getVideos"),
+  getArticles: () => ipcRenderer.invoke("articles:getArticles"),
 });
-
-// contextBridge.exposeInMainWorld("electronAPI", {
-//   openExternal: (url) => shell.openExternal(url),
-// });
