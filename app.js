@@ -12,6 +12,7 @@ async function loadVideos() {
   vLink.href = vResp.data.Link;
   vLink.text = vResp.data.Name;
   vLink.target = "_blank";
+  sessionStorage.setItem(1, "storage");
 }
 loadVideos();
 
@@ -22,6 +23,7 @@ async function loadArticles() {
   aLink.target = "_blank";
 }
 loadArticles();
+
 // document.addEventListener("DOMContentLoaded", () => {
 //   // Select all <a> tags with href starting with "http" (external links)
 //   const externalLinks = document.querySelectorAll('a[href^="http"]');
