@@ -1,11 +1,16 @@
+require("dotenv").config();
+
 const { Pool } = require("pg");
 
 const pool = new Pool({
-  host: "localhost",
+  host: process.env.PGHOST,
   port: "5432",
-  user: "postgres",
-  password: "1234",
-  database: "gamedev-res",
+  user: process.env.PGUSER,
+  password: process.env.PGPASSWORD,
+  database: process.env.PGDATABASE,
+  ssl: {
+    rejectUnauthorized: false,
+  },
 });
 
 async function queryVideos() {
