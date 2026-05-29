@@ -12,6 +12,7 @@ async function loadVideos() {
   vLink.href = vResp.data.Link;
   vLink.text = vResp.data.Name;
   vLink.target = "_blank";
+  localStorage.setItem("videos", JSON.stringify(vResp.data));
 }
 loadVideos();
 
@@ -20,8 +21,10 @@ async function loadArticles() {
   aLink.href = aResp.data.Link;
   aLink.text = aResp.data.Name;
   aLink.target = "_blank";
+  //localStorage.setItem("articles", JSON.stringify(vResp.data));
 }
 loadArticles();
+
 // document.addEventListener("DOMContentLoaded", () => {
 //   // Select all <a> tags with href starting with "http" (external links)
 //   const externalLinks = document.querySelectorAll('a[href^="http"]');

@@ -1,11 +1,16 @@
+require("dotenv").config();
+
 const { Pool } = require("pg");
 
 const pool = new Pool({
-  host: "localhost",
+  host: process.env.PGHOST,
   port: "5432",
-  user: "postgres",
-  password: "1234",
-  database: "gamedev-res",
+  user: process.env.PGUSER,
+  password: process.env.PGPASSWORD,
+  database: process.env.PGDATABASE,
+  ssl: {
+    rejectUnauthorized: false,
+  },
 });
 
 async function queryVideos() {
@@ -24,4 +29,20 @@ async function queryArticles() {
   await pool.end();
 }
 
-module.exports = { queryVideos, queryArticles };
+async function updateVideoQuery() {
+  console.log("chamando função update");
+  //const text = `UPDATE Videos SET Tags = $1, Comments = $2, WHERE ID=$3;`;
+  //const finalVideos = JSON.parse(localStorage.getItem("12345"));
+  //const values = [finalVideos.Tags, finalVideos.Comments, finalVideos.ID];
+  //const res = await pool.query(text, values)
+  //await pool.end();
+}
+
+module.exports = { queryVideos, queryArticles, updateVideoQuery };
+
+/*
+const text = 'INSERT INTO users(name, email) VALUES($1, $2) RETURNING *'
+const values = ['brianc', 'brian.m.carlson@gmail.com']
+ 
+console.log(res.rows[0])
+ */

@@ -6,4 +6,5 @@ contextBridge.exposeInMainWorld("electronAPI", {
   botaoClicado: () => ipcRenderer.send("botao-clicado"),
   getVideos: () => ipcRenderer.invoke("videos:getVideos"),
   getArticles: () => ipcRenderer.invoke("articles:getArticles"),
+  setVideos: () => ipcRenderer.invoke("videos:setVideos"),
 });
