@@ -56,4 +56,13 @@ ipcMain.on("botao-clicado", async () => {
     height: 300,
   });
   commen.loadFile("comment.html");
+
+  ipcMain.handle("videos:setVideos", async () => {
+    const setVideos = await postgres.updateVideoQuery();
+    return {
+      success: true,
+      data: setVideos,
+    };
+    console.log("ativou");
+  });
 });

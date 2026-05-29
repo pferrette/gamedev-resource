@@ -24,4 +24,20 @@ async function queryArticles() {
   await pool.end();
 }
 
-module.exports = { queryVideos, queryArticles };
+async function updateVideoQuery() {
+  console.log("chamando função update");
+  //const text = `UPDATE Videos SET Tags = $1, Comments = $2, WHERE ID=$3;`;
+  //const finalVideos = JSON.parse(localStorage.getItem("12345"));
+  //const values = [finalVideos.Tags, finalVideos.Comments, finalVideos.ID];
+  //const res = await pool.query(text, values)
+  //await pool.end();
+}
+
+module.exports = { queryVideos, queryArticles, updateVideoQuery };
+
+/*
+const text = 'INSERT INTO users(name, email) VALUES($1, $2) RETURNING *'
+const values = ['brianc', 'brian.m.carlson@gmail.com']
+ 
+console.log(res.rows[0])
+ */
